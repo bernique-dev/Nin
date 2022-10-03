@@ -1,0 +1,496 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 868cd5a0bc80189429426b187f0ee088, type: 3}
+  m_Name: Diko
+  m_EditorClassIdentifier: 
+  devinisions:
+  - nindaVersion: abl
+    humanVersion: arbre
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ailon
+    humanVersion: fer
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ani
+    humanVersion: ami
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: api
+    humanVersion: heureux, content
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: av
+    humanVersion: avoir
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bal
+    humanVersion: balle, ballon
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bato
+    humanVersion: bateau
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bekan
+    humanVersion: moto
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: belobito
+    humanVersion: "beau gosse, bien jou\xE9"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bi
+    humanVersion: "\xEAtre"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bitbag
+    humanVersion: "sac \xE0 bites"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bla
+    humanVersion: bras
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: blo
+    humanVersion: bleu
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bo
+    humanVersion: beau, belle
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bua
+    humanVersion: bois
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: buhol
+    humanVersion: bucheron
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: bukhop
+    humanVersion: libraire
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: buv
+    humanVersion: nourriture
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: dais
+    humanVersion: "d\xE9"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: dalk
+    humanVersion: "obscurit\xE9"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: daon
+    humanVersion: bas
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: delivnin
+    humanVersion: livreur
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: detain
+    humanVersion: jour
+    commentary: "P\xE9riode de temps commen\xE7ant au lever du soleil et se terminant
+      au coucher du soleil"
+    isFoldedOut: 0
+  - nindaVersion: devinision
+    humanVersion: "d\xE9finition"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: diko
+    humanVersion: dictionnaire
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: dilijabl
+    humanVersion: dirigeable
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: dloat
+    humanVersion: droite
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: dodo
+    humanVersion: sommeil
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: dodot
+    humanVersion: dormir
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: "\xE9"
+    humanVersion: et
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ekobekan
+    humanVersion: "moto \xE9lectrique"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: flui
+    humanVersion: fruit
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: galden
+    humanVersion: jardin
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: goh
+    humanVersion: gauche
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: gua
+    humanVersion: eau
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: hapo
+    humanVersion: chapeau, couvre-chef
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: hoko
+    humanVersion: chocolat
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: hokoho
+    humanVersion: chocolat chaud
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: hop
+    humanVersion: magasin
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: iana
+    humanVersion: montagne
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ie
+    humanVersion: il, elle
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: it
+    humanVersion: manger
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: jivl
+    humanVersion: froid
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: jon
+    humanVersion: jaune
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ju
+    humanVersion: jus
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: kakoa
+    humanVersion: cacao
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: kan
+    humanVersion: pouvoir
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: kane
+    humanVersion: mourir
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: klak
+    humanVersion: claque
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: klakos
+    humanVersion: fromage
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ku
+    humanVersion: cou
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: kusek
+    humanVersion: boire
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: lav
+    humanVersion: lave
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: le
+    humanVersion: lait
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: leg
+    humanVersion: jambe
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: livvelo
+    humanVersion: "v\xE9lo, bicyclette de livraison"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: loz
+    humanVersion: rose
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: luj
+    humanVersion: rouge
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: lun
+    humanVersion: lune
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: nabu
+    humanVersion: arbre
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: naitain
+    humanVersion: nuit
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: najata
+    humanVersion: magenta
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: nalon
+    humanVersion: marron
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: navet
+    humanVersion: navette
+    commentary: "Nom donn\xE9 aux bateaux faisant office de taxis."
+    isFoldedOut: 0
+  - nindaVersion: navio
+    humanVersion: avion
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: neobekan
+    humanVersion: "n\xE9o-moto"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: nib
+    humanVersion: marque du pluriel
+    commentary: 'A placer avant un mot pour indiquer qu''il est au pluriel.
+
+
+      Exemple
+      : "nib bekan" = "motos"'
+    isFoldedOut: 0
+  - nindaVersion: nin
+    humanVersion: Nin
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ninalva
+    humanVersion: Ninalva
+    commentary: Alphabet du Ninda
+    isFoldedOut: 0
+  - nindaVersion: ninbaz
+    humanVersion: Ninbaz
+    commentary: "Machin\xE9 \xE0 cr\xE9er des Nins"
+    isFoldedOut: 0
+  - nindaVersion: ninda
+    humanVersion: Ninda
+    commentary: Langue des Nins
+    isFoldedOut: 0
+  - nindaVersion: ninit
+    humanVersion: ninite
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: nit
+    humanVersion: viande
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: no
+    humanVersion: non
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: noi
+    humanVersion: oeil
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: nua
+    humanVersion: moi
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: nul
+    humanVersion: mur
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ol
+    humanVersion: or
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: olanj
+    humanVersion: orange
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: oldi
+    humanVersion: ordinateur
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: opu
+    humanVersion: haut
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: opunin
+    humanVersion: celui dans le ciel (joueur(s))
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ov
+    humanVersion: oeuf
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: pan
+    humanVersion: pain
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: panhop
+    humanVersion: boulangerie
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: pie
+    humanVersion: pied
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: piel
+    humanVersion: pierre, roche
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: pingpong
+    humanVersion: tennis de table, ping-pong
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: plant
+    humanVersion: centrale
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: plui
+    humanVersion: pluie
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: polt
+    humanVersion: porte
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: pui
+    humanVersion: puis
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: sakaduh
+    humanVersion: connard
+    commentary: Issu de l'anglais "douchebag"
+    isFoldedOut: 0
+  - nindaVersion: sine
+    humanVersion: "cin\xE9ma"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: sklin
+    humanVersion: "\xE9cran"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: sol
+    humanVersion: soleil
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: son
+    humanVersion: main
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: speis
+    humanVersion: espace
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ste
+    humanVersion: ce, cette, ces
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: subtlan
+    humanVersion: "m\xE9tro"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: sulie
+    humanVersion: chaussure
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: suol
+    humanVersion: chaleur
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: tablo
+    humanVersion: tableau
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: teatl
+    humanVersion: "th\xE9\xE2tre"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: tet
+    humanVersion: "t\xEAte, face"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: tlan
+    humanVersion: tramway
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: tua
+    humanVersion: toi
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: tul
+    humanVersion: tour
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: u
+    humanVersion: ou
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ui
+    humanVersion: oui
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: upalku
+    humanVersion: "encul\xE9"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: vant
+    humanVersion: vouloir
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: ve
+    humanVersion: feu
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: vel
+    humanVersion: vert
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: velo
+    humanVersion: "v\xE9lo, bicyclette"
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: vilo
+    humanVersion: filon
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: viole
+    humanVersion: violet
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: von
+    humanVersion: fun, amusement
+    commentary: 
+    isFoldedOut: 0
+  - nindaVersion: zik
+    humanVersion: musique
+    commentary: 
+    isFoldedOut: 0
