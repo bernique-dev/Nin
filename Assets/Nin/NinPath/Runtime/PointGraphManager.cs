@@ -13,15 +13,16 @@ public class PointGraphManager : MonoBehaviour {
 
     public Dictionary<Point, Queue<PointPathFollower>> pointQueues;
 
-    private Action<PointPathFollower> move = f => { Debug.Log(f.name); f.isMoving = true; f.RemoveFromLastPointQueue(); };
+    private Action<PointPathFollower> move = f => { f.isMoving = true; f.RemoveFromLastPointQueue(); };
     private Action<PointPathFollower> unMove = f => f.isMoving = false;
     private Action<PointPathFollower> nothing = f => { };
 
     private void Start() {
         pointQueues = new Dictionary<Point, Queue<PointPathFollower>>();
         foreach (Point point in graph.points) {
-            Queue<PointPathFollower> queue = new Queue<PointPathFollower>();
+            Queue<PointPathFollower> queue = new Queue<PointPathFollower>(new PointPathFollowerDistanceComparer());
             queue.OnFirst += move;
+            queue.OnNotFirst += unMove;
             queue.OnAdd += unMove;
             queue.OnRemove += nothing;
             pointQueues.Add(point, queue);
