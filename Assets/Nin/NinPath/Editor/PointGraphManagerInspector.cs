@@ -15,6 +15,7 @@ public class PointGraphManagerInspector : Editor {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
 
+        EditorGUI.BeginChangeCheck();
 
         PointGraphManager pointGraphManager = (PointGraphManager)target;
 
@@ -74,7 +75,9 @@ public class PointGraphManagerInspector : Editor {
             }
         }
 
-        EditorUtility.SetDirty(pointGraphManager);
+        if (EditorGUI.EndChangeCheck()) {
+            EditorUtility.SetDirty(pointGraphManager);
+        }
     }
 
 

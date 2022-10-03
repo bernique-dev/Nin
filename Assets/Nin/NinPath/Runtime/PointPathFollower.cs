@@ -72,7 +72,6 @@ public class PointPathFollower : MonoBehaviour {
 
                 nextPoint = path.GetNextPointFromDistance(distanceFromStart);
                 if (previousNextPoint != nextPoint) {
-                    //Debug.Log(name + " " + previousNextPoint + " -> " + nextPoint);
                     if (!graphManager.pointQueues[nextPoint].Contains(this)) {
                         graphManager.pointQueues[nextPoint].Add(this);
                     }
@@ -179,9 +178,6 @@ public class PointPathFollower : MonoBehaviour {
             Gizmos.DrawLine(origin.position, origin.position + Vector3.up);
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(destination.position, destination.position + Vector3.up);
-        }
-        if (nextPoint && previousNextPoint) {
-            Handles.Label(transform.position + Vector3.up * 3, previousNextPoint + " - " + nextPoint + "\n(" + previousPreviousNextPoint + ")");
         }
     }
     public override string ToString() {
