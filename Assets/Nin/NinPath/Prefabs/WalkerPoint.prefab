@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 355747070116456371}
-  - component: {fileID: 355747070116456368}
+  - component: {fileID: 9095039289909757538}
   m_Layer: 0
-  m_Name: Point
+  m_Name: WalkerPoint
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &355747070116456368
+--- !u!114 &9095039289909757538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 355747070116456370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79339b4f9282a7c4d962d346bb4fc7fd, type: 3}
+  m_Script: {fileID: 11500000, guid: ec00677b9f9a1ac4abbab84f6bde3221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

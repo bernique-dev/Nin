@@ -31,28 +31,31 @@ public class PointGraphManager : MonoBehaviour {
 
     private void OnDrawGizmos() {
         Gizmos.color = new Color32(0, 0, 150, 75);
-        foreach (PointGraphVertex vertex in graph.vertices) {
-            if (vertex.origin != null && vertex.destination != null) {
-                if (showVertices) {
-                    if (vertex.isBidirectional) {
-                        Gizmos.DrawLine(vertex.origin.position, vertex.destination.position);
+        if (graph.vertices != null) {
+            foreach (PointGraphVertex vertex in graph.vertices) {
+                if (vertex.origin != null && vertex.destination != null) {
+                    if (showVertices) {
+                        if (vertex.isBidirectional) {
+                            Gizmos.DrawLine(vertex.origin.position, vertex.destination.position);
+                        }
+                        else {
+                            DrawArrow.ForGizmo(vertex.origin.position, vertex.destination.position - vertex.origin.position);
+                        }
                     }
-                    else {
-                        DrawArrow.ForGizmo(vertex.origin.position, vertex.destination.position - vertex.origin.position);
-                    }
-                }
 #if UNITY_EDITOR
-                if (showWeights) Handles.Label(Vector3.Lerp(vertex.origin.position, vertex.destination.position, 0.5f), vertex.weight.ToString("F0"));
+                    if (showWeights) Handles.Label(Vector3.Lerp(vertex.origin.position, vertex.destination.position, 0.5f), vertex.weight.ToString("F0"));
 #endif
+                }
             }
-        }
 #if UNITY_EDITOR
             if (showPointsName) {
-            foreach (Point point in graph.points) {
-                Handles.Label(point.position, point.name);
+                foreach (Point point in graph.points) {
+                    Handles.Label(point.position, point.name);
+                }
             }
-        }
 #endif
+        }
+
     }
 
 }
