@@ -29,6 +29,10 @@ public class PointGraphManager : MonoBehaviour {
         }
     }
 
+    public void Link(Point origin, Point destination, float weight = 0) {
+        PointGraphVertex vertex = new PointGraphVertex(origin, destination);
+    }
+
     private void OnDrawGizmos() {
         Gizmos.color = new Color32(0, 0, 150, 75);
         if (graph.vertices != null) {

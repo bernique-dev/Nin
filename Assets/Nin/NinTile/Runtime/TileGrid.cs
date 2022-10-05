@@ -14,13 +14,13 @@ public class TileGrid {
     }
     [SerializeField] private List<TileInfo> m_tiles;
 
-    private Dictionary<Vector3, GameObject> tileInstances {
+    private Dictionary<Vector3Int, GameObject> tileInstances {
         get {
-            if (m_tileInstances == null) m_tileInstances = new Dictionary<Vector3, GameObject>();
+            if (m_tileInstances == null) m_tileInstances = new Dictionary<Vector3Int, GameObject>();
             return m_tileInstances;
         }
     }
-    private Dictionary<Vector3, GameObject> m_tileInstances;
+    private Dictionary<Vector3Int, GameObject> m_tileInstances;
 
     public void SetTile(Vector3Int pos, Tile tile) {
         TileInfo potentialTile = tiles.Find(ti => ti.position == pos);
@@ -37,7 +37,7 @@ public class TileGrid {
         }
     }
 
-    public void SetTileInstance(Vector3 pos, GameObject instance) {
+    public void SetTileInstance(Vector3Int pos, GameObject instance) {
         if (tileInstances.ContainsKey(pos)) {
             tileInstances[pos] = instance;
         }
@@ -47,15 +47,20 @@ public class TileGrid {
     }
 
     public Tile GetTile(Vector3Int pos) {
-        TileInfo searchedTile = tiles.Find(ti => ti.position == pos);
+        TileInfo searchedTile = GetTileInfo(pos);
         return searchedTile != null ? searchedTile.tile : null;
+    }
+
+    private TileInfo GetTileInfo(Vector3Int pos) {
+        TileInfo searchedTile = tiles.Find(ti => ti.position == pos);
+        return searchedTile;
     }
 
     public Dictionary<Vector3Int, Tile> GetAllTiles() {
         return tiles.ToDictionary(ti => ti.position, ti => ti.tile);
     }
 
-    public GameObject GetTileInstance(Vector3 pos) {
+    public GameObject GetTileInstance(Vector3Int pos) {
         return tileInstances[pos];
     }
 

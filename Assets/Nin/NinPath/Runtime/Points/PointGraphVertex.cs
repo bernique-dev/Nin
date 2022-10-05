@@ -22,11 +22,22 @@ public class PointGraphVertex {
         }
     }
 
-    public PointGraphVertex() : this(null, null) { }
+    public PointGraphVertex() : this(null, null, 0) { }
 
-    public PointGraphVertex(Point _origin, Point _destination) {
+    public PointGraphVertex(Point _origin, Point _destination) : this(_origin, _destination, 0) { }
+
+    public PointGraphVertex(Point _origin, Point _destination, int _weight) {
         origin = _origin;
         destination = _destination;
+        weight = _weight;
+    }
+
+    public bool IsEqualTo(object obj) {
+        PointGraphVertex objVertex = obj as PointGraphVertex;
+        if (objVertex != null) {
+            return objVertex.origin == origin && objVertex.destination == destination || (isBidirectional ? (objVertex.origin == destination && objVertex.destination == origin) : false);
+        }
+        return base.Equals(obj);
     }
 
 }

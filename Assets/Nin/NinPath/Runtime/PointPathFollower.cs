@@ -157,27 +157,30 @@ public class PointPathFollower : MonoBehaviour {
     }
 
     private void DrawGizmosPath() {
-        if (origin && destination) {
-            Vector3 positionOnPath = path.GetPositionFromDistance(distanceFromStart);
-            Vector3 headPoint = positionOnPath + Vector3.up;
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(positionOnPath, headPoint);
-            Gizmos.color = Color.white;
-
-            Point lastPoint = path.GetLastPointFromDistance(distanceFromStart);
+        if (path != null) {
 
             List<Point> points = path.GetPoints();
-            for (int i = 1; i < points.Count; i++) {
-                Point previousPoint = points[i - 1];
-                Point currentPoint = points[i];
-                Gizmos.color = new Color32(255, 255, 255, (byte)(previousPoint == lastPoint ? 255 : 75));
-                Gizmos.DrawLine(previousPoint.position, currentPoint.position);
-            }
+            if (origin && destination && points.Count > 0) {
+                Vector3 positionOnPath = path.GetPositionFromDistance(distanceFromStart);
+                Vector3 headPoint = positionOnPath + Vector3.up;
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(positionOnPath, headPoint);
+                Gizmos.color = Color.white;
 
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(origin.position, origin.position + Vector3.up);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(destination.position, destination.position + Vector3.up);
+                Point lastPoint = path.GetLastPointFromDistance(distanceFromStart);
+
+                for (int i = 1; i < points.Count; i++) {
+                    Point previousPoint = points[i - 1];
+                    Point currentPoint = points[i];
+                    Gizmos.color = new Color32(255, 255, 255, (byte)(previousPoint == lastPoint ? 255 : 75));
+                    Gizmos.DrawLine(previousPoint.position, currentPoint.position);
+                }
+
+                Gizmos.color = Color.green;
+                Gizmos.DrawLine(origin.position, origin.position + Vector3.up);
+                Gizmos.color = Color.blue;
+                Gizmos.DrawLine(destination.position, destination.position + Vector3.up);
+            }
         }
     }
     public override string ToString() {

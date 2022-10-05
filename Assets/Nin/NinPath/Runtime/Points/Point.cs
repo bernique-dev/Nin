@@ -14,5 +14,17 @@ public class Point : MonoBehaviour {
         return name;
     }
 
-
+    public Point GetClosestPointAmong(List<Point> points) {
+        Point point = null;
+        foreach (Point tmpPoint in points) {
+            if (point == null) {
+                point = tmpPoint;
+            } else {
+                if (Vector3.Distance(transform.position, tmpPoint.position) < Vector3.Distance(transform.position, point.position)) {
+                    point = tmpPoint;
+                }
+            }
+        }
+        return point;
+    }
 }

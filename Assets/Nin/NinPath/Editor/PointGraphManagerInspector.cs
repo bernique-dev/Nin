@@ -37,9 +37,9 @@ public class PointGraphManagerInspector : Editor {
                 Selection.activeGameObject = pointGraphManager.gameObject;
             }
         }
+        GameObject go = Selection.activeGameObject;
         if (drawVertices) {
             if (vertex == null) vertex = new PointGraphVertex();
-            GameObject go = Selection.activeGameObject;
             if (go) {
                 Point tmpPoint = go.GetComponent<Point>();
                 if (tmpPoint) {
@@ -71,7 +71,7 @@ public class PointGraphManagerInspector : Editor {
 
         if (pointGraphManager.pointQueues != null) {
             foreach (KeyValuePair<Point, Queue<PointPathFollower>> kvp in pointGraphManager.pointQueues) {
-                GUILayout.Label(kvp.Key + " - " + kvp.Value);
+                GUILayout.Label(kvp.Key + "-" + kvp.Key.position.ToString("F1") + " - " + kvp.Value);
             }
         }
 
