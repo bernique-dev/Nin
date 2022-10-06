@@ -7,7 +7,6 @@ using UnityEditor;
 public class Tile : ScriptableObject {
 
     public GameObject instance;
-    public Vector3 placeTaken = Vector3.one;
-    public Vector3 tilesTaken = Vector3.one;
+    public Vector3Int tilesTaken = Vector3Int.one;
 
 }

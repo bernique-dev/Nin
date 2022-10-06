@@ -16,12 +16,15 @@ public class TileGridManagerInspector : Editor {
         tileGridManager.doesTilesFoldout = EditorGUILayout.Foldout(tileGridManager.doesTilesFoldout, "Tiles");
         if (tileGridManager.doesTilesFoldout) {
             GUILayout.BeginHorizontal();
-            tileGridManager.tileInfoToAdd.position = EditorGUILayout.Vector3IntField(GUIContent.none, tileGridManager.tileInfoToAdd.position);
+            tileGridManager.tileInfoToAdd.positionOnGrid = EditorGUILayout.Vector3IntField(GUIContent.none, tileGridManager.tileInfoToAdd.positionOnGrid);
             tileGridManager.tileInfoToAdd.tile = (Tile)EditorGUILayout.ObjectField(tileGridManager.tileInfoToAdd.tile, typeof(Tile), false);
 
             GUILayout.EndHorizontal();
+
+            tileGridManager.tileInfoToAdd.rotation = Mathf.RoundToInt(EditorGUILayout.Slider(tileGridManager.tileInfoToAdd.rotation, 0, 270) / 90) * 90;
+
             if (GUILayout.Button("Add")) {
-                tileGridManager.tileGrid.SetTile(tileGridManager.tileInfoToAdd.position, tileGridManager.tileInfoToAdd.tile);
+                tileGridManager.tileGrid.SetTile(tileGridManager.tileInfoToAdd.positionOnGrid, tileGridManager.tileInfoToAdd.tile, tileGridManager.tileInfoToAdd.rotation);
             }
         }
 

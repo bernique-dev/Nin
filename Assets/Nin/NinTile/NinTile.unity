@@ -343,28 +343,28 @@ MonoBehaviour:
   tileSize: {x: 4, y: 1, z: 4}
   m_tileGrid:
     m_tiles:
-    - position: {x: 0, y: 0, z: 0}
+    - positionOnGrid: {x: 0, y: 0, z: 0}
       tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-    - position: {x: 0, y: 0, z: 1}
+      willBeInstantiated: 1
+      offset: {x: 0, y: 0, z: 0}
+      rotation: 90
+    - positionOnGrid: {x: 1, y: 0, z: 0}
       tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-    - position: {x: 0, y: 0, z: 2}
+      willBeInstantiated: 1
+      offset: {x: 0, y: 0, z: 0}
+      rotation: 180
+    - positionOnGrid: {x: 2, y: 0, z: 0}
       tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-    - position: {x: 2, y: 0, z: 0}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-    - position: {x: 2, y: 0, z: 1}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-    - position: {x: 2, y: 0, z: 2}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-    - position: {x: 1, y: 0, z: 0}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-    - position: {x: 1, y: 0, z: 1}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-    - position: {x: 1, y: 0, z: 2}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
+      willBeInstantiated: 1
+      offset: {x: 0, y: 0, z: 0}
+      rotation: 270
   doesTilesFoldout: 1
   tileInfoToAdd:
-    position: {x: 2, y: 0, z: 1}
+    positionOnGrid: {x: 0, y: 0, z: 1}
     tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
+    willBeInstantiated: 0
+    offset: {x: 0, y: 0, z: 0}
+    rotation: 270
   walkerGraphManager: {fileID: 1170057807}
   vehicleGraphManager: {fileID: 1401412242}
 --- !u!4 &694289734

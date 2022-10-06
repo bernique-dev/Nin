@@ -35,26 +35,40 @@ public class TileGridManager : MonoBehaviour {
     }
 
     public void InstantiateTiles() {
-        foreach (KeyValuePair<Vector3Int, Tile> kvp in tileGrid.GetAllTiles()) {
-            InstantiateTile(kvp.Key, kvp.Value);
+        List<TileInfo> tileInfos = tileGrid.GetTileInfos();
+        foreach (TileInfo tileInfo in tileInfos.Where(ti => ti.willBeInstantiated)) {
+            InstantiateTile(tileInfo);
+        }
+        foreach (TileInfo tileInfo in tileInfos.Where(ti => !ti.willBeInstantiated)) {
+            tileGrid.SetTileInstance(tileInfo.positionOnGrid, tileGrid.GetTileInstance(tileInfo.positionOnGrid - tileInfo.offset));
         }
     }
 
-    public void InstantiateTile(Vector3Int position, Tile tile) {
-        Vector3 instancePos = new Vector3(position.x * tileSize.x, position.y * tileSize.y, position.z * tileSize.z) + new Vector3(tile.tilesTaken.x * tileSize.x, 0, tile.tilesTaken.y * tileSize.z) / 2;
+    public void InstantiateTile(TileInfo tileInfo) {
+        Vector3Int position = tileInfo.positionOnGrid;
+        Tile tile = tileInfo.tile;
+        float rotationZ = tileInfo.rotation;
+        Quaternion rotation = Quaternion.Euler(0, rotationZ, 0);
+
+        Vector3 tilePositionBeforeOffset = new Vector3(position.x * tileSize.x, position.y * tileSize.y, position.z * tileSize.z);
+        Vector3 pivotOffset = new Vector3(tileSize.x, 0, tileSize.z) / 2;
+        Vector3 centerOffset = new Vector3(tile.tilesTaken.x * tileSize.x, 0, tile.tilesTaken.y * tileSize.z) / 2;
+        if (tile.tilesTaken != Vector3Int.one) centerOffset = VectorUtils.RotatePointAroundPivot(centerOffset, pivotOffset, rotation);
+        Vector3 instancePos = tilePositionBeforeOffset + centerOffset;
+
         GameObject instance = Instantiate(tile.instance, transform);
         instance.transform.position = instancePos;
+        instance.transform.rotation = rotation;
         tileGrid.SetTileInstance(position, instance);
 
         TileManager tileManager = instance.GetComponent<TileManager>();
-        tileManager.Initialize();
         tileManager.positionInGrid = position;
         tileManager.grid = tileGrid;
     }
 
     public void ConnectTiles() {
-        foreach (KeyValuePair<Vector3Int, Tile> kvp in tileGrid.GetAllTiles()) {
-            ConnectTile(kvp.Key);
+        foreach (TileInfo tileInfo in tileGrid.GetTileInfos().Where(ti => ti.willBeInstantiated)) {
+            ConnectTile(tileInfo.positionOnGrid);
         }
     }
 
@@ -69,7 +83,7 @@ public class TileGridManager : MonoBehaviour {
         vehicleGraphManager.graph.vertices.AddRange(tileManager.vehicleVertices);
 
 
-        foreach (KeyValuePair<Vector3Int, Tile> neighbourKvp in tileGrid.GetNeigbours(position)) {
+        foreach (KeyValuePair<Vector3Int, Tile> neighbourKvp in tileGrid.GetPositionAndNeigbours(position)) {
             GameObject neighbourInstance = tileGrid.GetTileInstance(neighbourKvp.Key);
             if (neighbourInstance) {
                 TileManager neighbourTileManager = neighbourInstance.GetComponent<TileManager>();
@@ -82,7 +96,14 @@ public class TileGridManager : MonoBehaviour {
 
     private void OnDrawGizmos() {
         if (showGizmos) {
-
+            Vector3 extentsMin = new Vector3(-32, 0, -32);
+            Vector3 extentsMax = new Vector3(32, 0, 32);
+            for (float x = extentsMin.x; x <= extentsMax.x; x += tileSize.x) {
+                Gizmos.DrawLine(new Vector3(x, 0, extentsMin.z), new Vector3(x, 0, extentsMax.z));
+            }
+            for (float z = extentsMin.x; z <= extentsMax.x; z += tileSize.z) {
+                Gizmos.DrawLine(new Vector3(extentsMin.x, 0, z), new Vector3(extentsMax.x, 0, z));
+            }
         }
     }
 
