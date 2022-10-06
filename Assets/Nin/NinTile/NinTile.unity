@@ -339,32 +339,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e85710dd066f66479507472f4d184f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showGizmos: 0
+  showGizmos: 1
   tileSize: {x: 4, y: 1, z: 4}
   m_tileGrid:
     m_tiles:
     - positionOnGrid: {x: 0, y: 0, z: 0}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
+      willBeInstantiated: 1
+      offset: {x: 0, y: 0, z: 0}
+      rotation: 0
+    - positionOnGrid: {x: 1, y: 0, z: 0}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
+      willBeInstantiated: 0
+      offset: {x: 1, y: 0, z: 0}
+      rotation: 0
+    - positionOnGrid: {x: 0, y: 0, z: 2}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
       willBeInstantiated: 1
       offset: {x: 0, y: 0, z: 0}
       rotation: 90
-    - positionOnGrid: {x: 1, y: 0, z: 0}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
-      willBeInstantiated: 1
-      offset: {x: 0, y: 0, z: 0}
-      rotation: 180
+    - positionOnGrid: {x: 0, y: 0, z: 1}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
+      willBeInstantiated: 0
+      offset: {x: 0, y: 0, z: -1}
+      rotation: 90
     - positionOnGrid: {x: 2, y: 0, z: 0}
-      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
       willBeInstantiated: 1
       offset: {x: 0, y: 0, z: 0}
       rotation: 270
+    - positionOnGrid: {x: 2, y: 0, z: 1}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
+      willBeInstantiated: 0
+      offset: {x: 0, y: 0, z: 1}
+      rotation: 270
+    - positionOnGrid: {x: -2, y: 0, z: 0}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
+      willBeInstantiated: 1
+      offset: {x: 0, y: 0, z: 0}
+      rotation: 0
+    - positionOnGrid: {x: -1, y: 0, z: 0}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
+      willBeInstantiated: 0
+      offset: {x: 1, y: 0, z: 0}
+      rotation: 0
+    - positionOnGrid: {x: -2, y: 0, z: 1}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
+      willBeInstantiated: 1
+      offset: {x: 0, y: 0, z: 0}
+      rotation: 0
+    - positionOnGrid: {x: -1, y: 0, z: 1}
+      tile: {fileID: 11400000, guid: 1f5e125f41cde7c4bb2e16e5a4ac9ced, type: 2}
+      willBeInstantiated: 0
+      offset: {x: 1, y: 0, z: 0}
+      rotation: 0
+    - positionOnGrid: {x: 1, y: 0, z: 1}
+      tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
+      willBeInstantiated: 1
+      offset: {x: 0, y: 0, z: 0}
+      rotation: 0
   doesTilesFoldout: 1
   tileInfoToAdd:
-    positionOnGrid: {x: 0, y: 0, z: 1}
+    positionOnGrid: {x: 1, y: 0, z: 1}
     tile: {fileID: 11400000, guid: 26db23fde08933341abc4efc50da5603, type: 2}
     willBeInstantiated: 0
     offset: {x: 0, y: 0, z: 0}
-    rotation: 270
+    rotation: 0
   walkerGraphManager: {fileID: 1170057807}
   vehicleGraphManager: {fileID: 1401412242}
 --- !u!4 &694289734

@@ -22,18 +22,37 @@ public class TileGrid {
     }
     private Dictionary<Vector3Int, GameObject> m_tileInstances;
 
-    public void SetTile(Vector3Int pos, Tile tile, float rotation) {
+    public bool CanSetTile(Vector3Int pos, Tile tile, float rotation) {
+        bool result = true;
         Vector3Int tilesExtent = GetRotatedVector3Int(rotation, tile.tilesTaken);
         Vector3Int tilesExtentDirection = GetRotatedTileExtent(rotation, tile.tilesTaken);
         for (int x = 0; x <= Mathf.Abs(tilesExtent.x) - 1; x++) {
             for (int z = 0; z <= Mathf.Abs(tilesExtent.z) - 1; z++) {
                 Vector3Int tileOffset = new Vector3Int(x * tilesExtentDirection.x, 0, z * tilesExtentDirection.z);
-                Debug.Log(tilesExtent + " => " + tileOffset);
+                Vector3Int offsetPos = pos + tileOffset;
+                TileInfo potentialTile = tileInfos.Find(ti => offsetPos == ti.positionOnGrid);
+                if (potentialTile != null) {
+                    result = false;
+                }
+            }
+        }
+        return result;
+    }
+
+    public void SetTile(Vector3Int pos, Tile tile, float rotation) {
+        if (!CanSetTile(pos, tile, rotation)) {
+            throw new Exception("Can't place tile (" + tile.instance.name +") on " + (pos));
+        }
+        Vector3Int tilesExtent = GetRotatedVector3Int(rotation, tile.tilesTaken);
+        Vector3Int tilesExtentDirection = GetRotatedTileExtent(rotation, tile.tilesTaken);
+        for (int x = 0; x <= Mathf.Abs(tilesExtent.x) - 1; x++) {
+            for (int z = 0; z <= Mathf.Abs(tilesExtent.z) - 1; z++) {
+                Vector3Int tileOffset = new Vector3Int(x * tilesExtentDirection.x, 0, z * tilesExtentDirection.z);
                 Vector3Int offsetPos = pos + tileOffset;
                 TileInfo potentialTile = tileInfos.Find(ti => offsetPos == ti.positionOnGrid);
                 if (potentialTile != null) {
                     Debug.Log(potentialTile.tile);
-                    throw new Exception("Tile already on " + (pos + tileOffset));
+                    throw new Exception("Can't set tile ! Tile already on " + (pos + tileOffset));
                 } else {
                     tileInfos.Add(new TileInfo(pos + tileOffset, tile, tileOffset == Vector3Int.zero, tileOffset, rotation));
                 }
