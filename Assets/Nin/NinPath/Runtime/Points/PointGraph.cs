@@ -3,6 +3,9 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Representation of a Graph
+/// </summary>
 [Serializable]
 public class PointGraph {
 
@@ -10,6 +13,12 @@ public class PointGraph {
 
     public List<PointGraphVertex> vertices;
 
+    /// <summary>
+    /// Returns, if it exists, the path from fromPoint to toPoint
+    /// </summary>
+    /// <param name="fromPoint">Origin</param>
+    /// <param name="toPoint">Destination</param>
+    /// <returns></returns>
     public PointPath FindShortestPath(Point fromPoint, Point toPoint) {
         PointPath path = null;
 
@@ -63,6 +72,12 @@ public class PointGraph {
         return lowestFScorePoint;
     }
 
+
+    /// <summary>
+    /// Returns Dictionary associating Points from _points with its neighbours calculated from _vertices
+    /// </summary>
+    /// <param name="_points">List of points</param>
+    /// <param name="_vertices">List of vertices</param>
     private Dictionary<Point, List<Point>> CalculateNeighbours(List<Point> _points, List<PointGraphVertex> _vertices) {
         Dictionary<Point, List<Point>> pointsAndneighbours = new Dictionary<Point, List<Point>>();
 

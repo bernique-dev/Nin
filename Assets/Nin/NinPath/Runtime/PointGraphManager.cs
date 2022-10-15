@@ -3,14 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// Manages PointGraph
+/// </summary>
 public class PointGraphManager : MonoBehaviour {
 
     public PointGraph graph;
+    /// <summary>
+    /// Shows points' names as Gizmos
+    /// </summary>
     public bool showPointsName;
+    /// <summary>
+    /// Shows vertices' weights as Gizmos
+    /// </summary>
     public bool showWeights;
+    /// <summary>
+    /// Shows vertices' as Gizmos
+    /// </summary>
     public bool showVertices;
     public bool drawBidirectional = true;
 
+    /// <summary>
+    /// Associates Points and a Queue for PointPathFollowers expecting to go to it
+    /// </summary>
     public Dictionary<Point, Queue<PointPathFollower>> pointQueues;
 
     private Action<PointPathFollower> move = f => { f.isMoving = true; f.RemoveFromLastPointQueue(); };
@@ -29,6 +44,9 @@ public class PointGraphManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Links specified points with a specified weigh (0 by default)
+    /// </summary>
     public void Link(Point origin, Point destination, float weight = 0) {
         PointGraphVertex vertex = new PointGraphVertex(origin, destination);
     }

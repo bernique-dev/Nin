@@ -2,6 +2,9 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Debug component to easily generate Point fields and generate a Graph from it
+/// </summary>
 public class PointFieldManager : MonoBehaviour {
 
     public GameObject pointPrefab;
@@ -14,6 +17,9 @@ public class PointFieldManager : MonoBehaviour {
 
     private List<Point> points;
 
+    /// <summary>
+    /// Instantiate Points
+    /// </summary>
     public void GenerateField() {
         int children = transform.childCount;
         points = new List<Point>();
@@ -32,6 +38,9 @@ public class PointFieldManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Generates graph from previously instantiated Points
+    /// </summary>
     public void GenerateGraph() {
         graphManager.graph.points = points;
         graphManager.graph.vertices = new List<PointGraphVertex>();
@@ -45,6 +54,10 @@ public class PointFieldManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Delete a specified number of random vertices
+    /// </summary>
+    /// <param name="nb">Number of ramdom removed vertices</param>
     public void DeleteRandomVertices(int nb) {
         List<PointGraphVertex> vertices = graphManager.graph.vertices;
         for (int delete = 0; delete < nb; delete++) {
@@ -52,6 +65,9 @@ public class PointFieldManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Returns if p1 and p2 are Neighbours in the Point field
+    /// </summary>
     private bool AreNeighbours(Point p1, Point p2) {
         Vector3 pos1 = p1.position;
         Vector3 pos2 = p2.position;

@@ -2,12 +2,24 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the TileGrid and its Tiles' instantiation
+/// </summary>
 public class TileGridManager : MonoBehaviour {
 
+    /// <summary>
+    /// Show Gizmos on scene
+    /// </summary>
     public bool showGizmos;
 
+    /// <summary>
+    /// Size of Tile in the world
+    /// </summary>
     public Vector3 tileSize = Vector3.one;
 
+    /// <summary>
+    /// Managed TileGrid
+    /// </summary>
     public TileGrid tileGrid {
         get {
             if (m_tileGrid == null) m_tileGrid = new TileGrid();
@@ -19,43 +31,70 @@ public class TileGridManager : MonoBehaviour {
     }
     [SerializeField] private TileGrid m_tileGrid;
 
+    /// <summary>
+    /// Inspector's tiles' foldout state
+    /// </summary>
     [HideInInspector] public bool doesTilesFoldout;
+    /// <summary>
+    /// Temporary TileInfo used before adding it to TileGrid in the Inspector
+    /// </summary>
     [HideInInspector] public TileInfo tileInfoToAdd;
 
+    /// <summary>
+    /// GraphManager of the Walkers
+    /// </summary>
     public PointGraphManager walkerGraphManager;
+    /// <summary>
+    /// GraphManager of the Vehicles
+    /// </summary>
     public PointGraphManager vehicleGraphManager;
 
     private void Start() {
         GenerateGrid();
     }
 
+    /// <summary>
+    /// Instatiate and connect Tiles
+    /// </summary>
     public void GenerateGrid() {
         InstantiateTiles();
         ConnectTiles();
     }
 
+    /// <summary>
+    /// Instantiate all Tiles in TileGrid
+    /// </summary>
     public void InstantiateTiles() {
         List<TileInfo> tileInfos = tileGrid.GetTileInfos();
+        // Instantiate All Tiles
         foreach (TileInfo tileInfo in tileInfos.Where(ti => ti.willBeInstantiated)) {
             InstantiateTile(tileInfo);
         }
+        // Associate non-instantiated Tiles to their instantiated Tile
         foreach (TileInfo tileInfo in tileInfos.Where(ti => !ti.willBeInstantiated)) {
             tileGrid.SetTileInstance(tileInfo.positionOnGrid, tileGrid.GetTileInstance(tileInfo.positionOnGrid - tileInfo.offset));
         }
     }
 
+    /// <summary>
+    /// Instantiate specified Tile
+    /// </summary>
+    /// <param name="tileInfo">TileInfo of the Tile to add</param>
     public void InstantiateTile(TileInfo tileInfo) {
+        // Sets easier accesses to info
         Vector3Int position = tileInfo.positionOnGrid;
         Tile tile = tileInfo.tile;
         float rotationZ = tileInfo.rotation;
         Quaternion rotation = Quaternion.Euler(0, rotationZ, 0);
 
+        // Calculates positions
         Vector3 tilePositionBeforeOffset = new Vector3(position.x * tileSize.x, position.y * tileSize.y, position.z * tileSize.z);
         Vector3 pivotOffset = new Vector3(tileSize.x, 0, tileSize.z) / 2;
         Vector3 centerOffset = new Vector3(tile.tilesTaken.x * tileSize.x, 0, tile.tilesTaken.y * tileSize.z) / 2;
         if (tile.tilesTaken != Vector3Int.one) centerOffset = VectorUtils.RotatePointAroundPivot(centerOffset, pivotOffset, rotation);
         Vector3 instancePos = tilePositionBeforeOffset + centerOffset;
 
+        // Instantiates and positions Tile. Associates it to position in the TileGrid
         GameObject instance = Instantiate(tile.instance, transform);
         instance.transform.position = instancePos;
         instance.transform.rotation = rotation;
@@ -66,16 +105,23 @@ public class TileGridManager : MonoBehaviour {
         tileManager.grid = tileGrid;
     }
 
+    /// <summary>
+    /// Connect all instantiated Tiles
+    /// </summary>
     public void ConnectTiles() {
         foreach (TileInfo tileInfo in tileGrid.GetTileInfos().Where(ti => ti.willBeInstantiated)) {
             ConnectTile(tileInfo.positionOnGrid);
         }
     }
 
+    /// <summary>
+    /// Connect instantiated Tile at specified position
+    /// </summary>
+    /// <param name="position"></param>
     public void ConnectTile(Vector3Int position) {
         TileManager tileManager = tileGrid.GetTileInstance(position).GetComponent<TileManager>();
 
-        //ADD TILE'S POINTS AND VERTICES TO GRAPH
+        //Add Tile's points and vertices to graphs
         walkerGraphManager.graph.points.AddRange(tileManager.walkerPoints);
         vehicleGraphManager.graph.points.AddRange(tileManager.vehiclePoints);
 
@@ -88,8 +134,8 @@ public class TileGridManager : MonoBehaviour {
             if (neighbourInstance) {
                 TileManager neighbourTileManager = neighbourInstance.GetComponent<TileManager>();
                 List<PointGraphVertex> vertices = tileManager.GetWalkerLinksWith(neighbourTileManager);
-                //Debug.Log(vertices.Count);
-                walkerGraphManager.graph.vertices.AddRange(vertices.Where(v => walkerGraphManager.graph.vertices.Find(vb => vb.IsEqualTo(v)) == null));
+                //todo Add to vehicleGraph (needs road to test)
+                walkerGraphManager.graph.vertices.AddRange(vertices.Where(v => walkerGraphManager.graph.vertices.Find(vb => vb.Equals(v)) == null));
             }
         }
     }

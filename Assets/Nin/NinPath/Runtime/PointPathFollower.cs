@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// Follows a PointPath
+/// </summary>
 [ExecuteInEditMode]
 public class PointPathFollower : MonoBehaviour {
 
@@ -11,12 +14,18 @@ public class PointPathFollower : MonoBehaviour {
 
     public PointGraphManager graphManager;
 
+    /// <summary>
+    /// Graph to calculate PointPath from
+    /// </summary>
     public PointGraph graph {
         get {
             return graphManager? graphManager.graph : null;
         }
     }
 
+    /// <summary>
+    /// Progress in the path (0 <= d <= 1)
+    /// </summary>
     public float distanceProgress {
         get {
             return path != null ? distanceFromStart / path.distance : 0;
@@ -26,6 +35,9 @@ public class PointPathFollower : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Distance from origin
+    /// </summary>
     public float distanceFromStart {
         get {
             return m_distanceFromStart;
@@ -55,10 +67,8 @@ public class PointPathFollower : MonoBehaviour {
     public float speed = 1;
     public float rotationSpeed = 15;
 
-    public float distanceToleranceFromPoint = 1;
 
     private Point previousNextPoint;
-    private Point previousPreviousNextPoint;
     private Point nextPoint;
 
     private void Start() {
@@ -70,6 +80,7 @@ public class PointPathFollower : MonoBehaviour {
         if (Application.isPlaying) {
             if (isGoing) {
 
+                // Checks current next Point and if different from saved one, adds to next Point's queue
                 nextPoint = path.GetNextPointFromDistance(distanceFromStart);
                 if (previousNextPoint != nextPoint) {
                     if (!graphManager.pointQueues[nextPoint].Contains(this)) {
@@ -77,14 +88,14 @@ public class PointPathFollower : MonoBehaviour {
                     }
                     previousNextPoint = nextPoint;
                 }
-                //find the vector pointing from our position to the target
+                // Finds the vector pointing from our position to the target
                 Vector3 direction = (nextPoint.position - transform.position).normalized;
                 if (isMoving) {
                     distanceFromStart += Time.deltaTime * speed;
                     if (direction != Vector3.zero) {
-                        //create the rotation we need to be in to look at the target
+                        // Creates the rotation we need to be in to look at the target
                         Quaternion rotationToLookAt = Quaternion.LookRotation(direction);
-                        //rotate us over time according to speed until we are in the required rotation
+                        // Rotates GO over time according to speed until we are in the required rotation
                         transform.rotation = Quaternion.Slerp(transform.rotation, rotationToLookAt, Time.deltaTime * rotationSpeed);
                     }
                 }
@@ -94,6 +105,7 @@ public class PointPathFollower : MonoBehaviour {
 
             }
         } else {
+            // In Editor
             if (path != null) {
                 path.SetNextPoints();
                 path.CalculateDistances();
@@ -101,8 +113,10 @@ public class PointPathFollower : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Removes froom last Point's queue
+    /// </summary>
     public void RemoveFromLastPointQueue() {
-        //Debug.Log(this);
         Point lastPoint = path.GetLastPointFromDistance(distanceFromStart);
         if (lastPoint != nextPoint) {
             if (graphManager.pointQueues[lastPoint].Contains(this)) {
@@ -111,12 +125,18 @@ public class PointPathFollower : MonoBehaviour {
         }
     }
 
-
+    /// <summary>
+    /// Calculates ShortestPath from current position to random Point taken from graph
+    /// </summary>
     public void CalculateShortestPathFromHereToRandomPoint() {
         Point pathDestination = graph.points.Where(p => p != origin).ToList()[Random.Range(0, graph.points.Count - 1)];
         CalculateShortestPathFromHere(pathDestination);
     }
 
+
+    /// <summary>
+    /// Calculates ShortestPath from current position to specified Point
+    /// </summary>
     public void CalculateShortestPathFromHere(Point toPoint) {
         isGoing = false;
 
@@ -128,6 +148,7 @@ public class PointPathFollower : MonoBehaviour {
         if(previousLastPoint) origin = previousLastPoint;
         CalculateShortestPath(origin, destination, false);
 
+        // Checks if path backtracks. If so, adds previous path's next point as path's origin
         PointPath newPath = path;
         Point nextPoint = newPath.GetNextPointFromDistance(distanceFromStart);
         if (previousNextPoint != nextPoint) {
@@ -139,6 +160,10 @@ public class PointPathFollower : MonoBehaviour {
         isGoing = true;
     }
 
+    /// <summary>
+    /// Calculates shortest path from specified Points
+    /// </summary>
+    /// <param name="isMovingAfter">Can the player move after arriving ?</param>
     public void CalculateShortestPath(Point fromPoint, Point toPoint, bool isMovingAfter = true) {
         isGoing = false;
         path = graph.FindShortestPath(fromPoint, toPoint);
@@ -156,6 +181,9 @@ public class PointPathFollower : MonoBehaviour {
         DrawGizmosPath();
     }
 
+    /// <summary>
+    /// Draw path as Gizmos
+    /// </summary>
     private void DrawGizmosPath() {
         if (path != null) {
 

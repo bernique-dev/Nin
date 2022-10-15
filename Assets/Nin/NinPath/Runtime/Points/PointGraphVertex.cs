@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Representation of a vertex inside a PointGraph
+/// </summary>
 [Serializable]
 public class PointGraphVertex {
 
@@ -32,12 +35,16 @@ public class PointGraphVertex {
         weight = _weight;
     }
 
-    public bool IsEqualTo(object obj) {
+    public override bool Equals(object obj) {
         PointGraphVertex objVertex = obj as PointGraphVertex;
         if (objVertex != null) {
             return objVertex.origin == origin && objVertex.destination == destination || (isBidirectional ? (objVertex.origin == destination && objVertex.destination == origin) : false);
         }
         return base.Equals(obj);
+    }
+
+    public override int GetHashCode() {
+        return origin.GetHashCode() + destination.GetHashCode() + isBidirectional.GetHashCode();
     }
 
 }

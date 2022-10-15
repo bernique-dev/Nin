@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Compares PointPathFollower's distance from next Point
+/// </summary>
 public class PointPathFollowerDistanceComparer : Comparer<PointPathFollower> {
     public override int Compare(PointPathFollower x, PointPathFollower y) {
         if (x.isMoving == y.isMoving) {

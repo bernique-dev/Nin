@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Debug Component to test PointPath
+/// </summary>
 [ExecuteInEditMode]
 public class PointPathManager : MonoBehaviour {
 
