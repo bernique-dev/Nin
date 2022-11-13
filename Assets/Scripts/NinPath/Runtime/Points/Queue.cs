@@ -33,6 +33,10 @@ public class Queue<T> {
     /// </summary>
     public Comparer<T> comparer;
 
+    public int Count {
+        get { return elements.Count; }
+    }
+
     public Queue(Comparer<T> _comparer) {
         elements = new List<T>();
         comparer = _comparer;
@@ -62,15 +66,23 @@ public class Queue<T> {
     /// <param name="element">Element to add</param>
     /// <param name="sort">Sorts queue or not</param>
     public void Add(T element, bool sort = true) {
-        elements.Add(element);
-        OnAdd(element);
-        T previousFirstElement = elements[0];
-        if (sort) Sort();
-        if (element.Equals(elements[0])) {
+        if (elements.Count > 0) {
+            T previousFirstElement = elements[0];
+            if (!elements.Contains(element)) {
+                elements.Add(element);
+            }
+            OnAdd(element);
+            if (sort) Sort();
+            if (element.Equals(elements[0])) {
+                OnFirst(element);
+            }
+            if (!previousFirstElement.Equals(elements[0])) {
+                OnNotFirst(previousFirstElement);
+            }
+        } else {
+            elements.Add(element);
+            OnAdd(element);
             OnFirst(element);
-        }
-        if (!previousFirstElement.Equals(elements[0])) {
-            OnNotFirst(previousFirstElement);
         }
     }
 

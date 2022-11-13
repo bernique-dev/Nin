@@ -72,8 +72,8 @@ public class PointPathFollower : MonoBehaviour, ILoadable, ILoadingWaiter {
     public float rotationSpeed = 15;
 
 
-    private Point previousNextPoint;
-    private Point nextPoint;
+    public Point previousNextPoint;
+    public Point nextPoint;
 
     private void Awake() {
         if (instances == null) instances = new List<PointPathFollower>();
@@ -89,7 +89,7 @@ public class PointPathFollower : MonoBehaviour, ILoadable, ILoadingWaiter {
 
         //CalculateShortestPathFromHereToRandomPoint();
         CalculateShortestPath(origin, destination);
-        Debug.Log("Began");
+        //Debug.Log("Began");
     }
 
     private void Update() {
@@ -99,9 +99,9 @@ public class PointPathFollower : MonoBehaviour, ILoadable, ILoadingWaiter {
                 // Checks current next Point and if different from saved one, adds to next Point's queue
                 nextPoint = path.GetNextPointFromDistance(distanceFromStart);
                 if (previousNextPoint != nextPoint) {
-                    if (!graphManager.pointQueues[nextPoint].Contains(this)) {
+                    //if (!graphManager.pointQueues[nextPoint].Contains(this)) {
                         graphManager.pointQueues[nextPoint].Add(this);
-                    }
+                    //}
                     previousNextPoint = nextPoint;
                 }
                 // Finds the vector pointing from our position to the target
@@ -153,7 +153,8 @@ public class PointPathFollower : MonoBehaviour, ILoadable, ILoadingWaiter {
     /// Calculates ShortestPath from current position to random Point taken from graph
     /// </summary>
     public void CalculateShortestPathFromHereToRandomPoint() {
-        Point pathDestination = graph.points.Where(p => p != origin).ToList()[Random.Range(0, graph.points.Count - 1)];
+        List<Point> possiblePoints = graph.points.Where(p => p != origin && (graphManager.pointQueues != null ? graphManager.pointQueues[p].Count <= 0 : true)).ToList();
+        Point pathDestination = possiblePoints[Random.Range(0, possiblePoints.Count - 1)];
         CalculateShortestPathFromHere(pathDestination);
     }
 
@@ -165,8 +166,9 @@ public class PointPathFollower : MonoBehaviour, ILoadable, ILoadingWaiter {
         isGoing = false;
 
         destination = toPoint;
+
         if (path != null && path.GetPoints().Count > 0) {
-            Debug.Log(path.GetPoints().Count);
+            //Debug.Log(path.GetPoints().Count);
             Point previousLastPoint = path.GetLastPointFromDistance(distanceFromStart);
             Point previousNextPoint = path.GetNextPointFromDistance(distanceFromStart);
 
@@ -177,8 +179,10 @@ public class PointPathFollower : MonoBehaviour, ILoadable, ILoadingWaiter {
             // Checks if path backtracks. If so, adds previous path's next point as path's origin
             Point nextPoint = path != null ? path.GetNextPointFromDistance(distanceFromStart) : previousNextPoint;
             if (previousNextPoint != nextPoint) {
-                if (previousNextPoint) origin = previousNextPoint;
-                distanceFromStart = Vector3.Distance(transform.position, origin.position);
+                Point newOrigin = origin;
+                if (previousNextPoint) newOrigin = previousNextPoint;
+                distanceFromStart = Vector3.Distance(transform.position, newOrigin.position);
+                origin = newOrigin;
                 path.Insert(origin, 0);
             }
         } else {

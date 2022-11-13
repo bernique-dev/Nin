@@ -29,6 +29,7 @@ public class PointGraphManager : MonoBehaviour, ILoadable {
     public Dictionary<Point, Queue<PointPathFollower>> pointQueues;
 
     private Action<PointPathFollower> move = f => { f.isMoving = true; f.RemoveFromLastPointQueue(); };
+    private Action<PointPathFollower> moveWithoutRemoving = f => f.isMoving = true;
     private Action<PointPathFollower> unMove = f => f.isMoving = false;
     private Action<PointPathFollower> nothing = f => { };
 
@@ -38,6 +39,8 @@ public class PointGraphManager : MonoBehaviour, ILoadable {
             Queue<PointPathFollower> queue = new Queue<PointPathFollower>(new PointPathFollowerDistanceComparer());
             queue.OnFirst += move;
             queue.OnNotFirst += unMove;
+            //queue.OnFirst += moveWithoutRemoving;
+            //queue.OnNotFirst += moveWithoutRemoving;
             queue.OnAdd += unMove;
             queue.OnRemove += nothing;
             pointQueues.Add(point, queue);

@@ -15,7 +15,15 @@ public class PointPathFollowerInspector : Editor {
         PointPath path = pointPathFollower.path;
         PointGraph graph = pointPathFollower.graph;
 
-        pointPathFollower.isGoing = EditorGUILayout.Toggle(pointPathFollower.isGoing);
+        GUILayout.BeginHorizontal();
+        pointPathFollower.isGoing = GUILayout.Toggle(pointPathFollower.isGoing, "isGoing");
+        pointPathFollower.isMoving = GUILayout.Toggle(pointPathFollower.isMoving, "isMoving");
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        pointPathFollower.previousNextPoint = (Point)EditorGUILayout.ObjectField(pointPathFollower.previousNextPoint, typeof(Point), true);
+        pointPathFollower.nextPoint = (Point)EditorGUILayout.ObjectField(pointPathFollower.nextPoint, typeof(Point), true);
+        GUILayout.EndHorizontal();
 
         pointPathFollower.graphManager = (PointGraphManager)EditorGUILayout.ObjectField(pointPathFollower.graphManager, typeof(PointGraphManager), true);
 
