@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50dfdcfdaa2ad2c46b984d9a5b98e018, type: 3}
+  m_Name: NinbazTile
+  m_EditorClassIdentifier: 
+  instance: {fileID: 4934934409030809133, guid: b4295bb85690d5644aed94e732858779, type: 3}
+  tilesTaken: {x: 2, y: 1, z: 2}

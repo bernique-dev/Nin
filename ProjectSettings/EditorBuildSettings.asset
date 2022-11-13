@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scripts/NinTile/NinTile.unity
+    guid: fbe4bed1d19a8ad459dee99834ea0cbf
   m_configObjects: {}
